@@ -1,0 +1,7 @@
+parameters:
+#    glr_user.example.class: Glr\UserBundle\Example
+
+services:
+#    glr_user.example:
+#        class: %glr_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,4 @@
+glr_user:
+    resource: "@GlrUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
