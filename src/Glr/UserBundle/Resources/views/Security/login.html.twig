@@ -1,0 +1,24 @@
+{% extends "GlrUserBundle::layout_user.html.twig" %}
+
+{% trans_default_domain 'GlrUserBundle' %}
+
+{% block glr_user_content %}
+{% if error %}
+    <div>{{ error|trans }}</div>
+{% endif %}
+
+<form action="{{ path("glr_user_security_check") }}" method="post">
+
+    <label for="username">{{ 'Email'|trans }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+    <label for="password">{{ 'Contreseña'|trans }}</label>
+    <input type="password" id="password" name="_password" required="required" />
+
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">{{ 'Recordarme'|trans }}</label>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <input type="submit" id="_submit" name="_submit" value="{{ 'Login'|trans }}" />
+</form>
+{% endblock glr_user_content %}

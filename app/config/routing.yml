@@ -1,3 +1,6 @@
+glr_user_security:
+    resource: "@GlrUserBundle/Resources/config/routing/security.xml"
+
 glr_user:
     resource: "@GlrUserBundle/Resources/config/routing.yml"
     prefix:   /

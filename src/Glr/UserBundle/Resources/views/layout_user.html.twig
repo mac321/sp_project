@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'GlrUserBundle') }} |
+                <a href="{{ path('glr_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'GlrUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('glr_user_security_login') }}">{{ 'layout.login'|trans({}, 'GlrUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div>
+            {% block glr_user_content %}
+            {% endblock glr_user_content %}
+        </div>
+    </body>
+</html>
