@@ -1,15 +1,15 @@
-security:
-    providers:
-        in_memory:
-            memory: ~
+# security:
+#     providers:
+#         in_memory:
+#             memory: ~
 
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+#     firewalls:
+#         dev:
+#             pattern: ^/(_(profiler|wdt)|css|images|js)/
+#             security: false
 
-        default:
-            anonymous: ~
+#         default:
+#             anonymous: ~
 security:
     encoders:
         Glr\UserBundle\Entity\User:
@@ -23,15 +23,13 @@ security:
 
     providers:
         user_db:
-            entity: { class:  Glr\UsuarioBundle\Entity\Usuario }
-        fos_userbundle:
-            id: fos_user.user_provider.username_email
+            entity: { class: Glr\UserBundle\Entity\User, property: email }
 
     firewalls:
         main:
             pattern: ^/
             form_login:
-                provider: fos_userbundle
+                provider: user_db
                 csrf_provider: form.csrf_provider
             logout:       true
             anonymous:    true

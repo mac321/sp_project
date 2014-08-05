@@ -1,157 +1,138 @@
 <?php
 
-namespace Glr\UsuarioBundle\Entity;
+namespace Glr\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-use FOS\UserBundle\Model\User as BaseUser;
 
 /**
- * Glr\UsuarioBundle\Entity
+ * Glr\UserBundle\Entity
  *
  * @ORM\Table(name="usuario")
- * @ORM\Entity(repositoryClass="Glr\UsuarioBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Glr\UserBundle\Entity\UserRepository")
  */
-// class Usuario implements UserInterface, \Serializable
-class Usuario extends BaseUser
+class User implements UserInterface, \Serializable
 {
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
-}
-
-<?php
-
-/*
- * This file is part of the FOSUserBundle package.
- *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-namespace FOS\UserBundle\Model;
-
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-
-/**
- * Storage agnostic user object
- *
- * @author Thibault Duplessis <thibault.duplessis@gmail.com>
- * @author Johannes M. Schmitt <schmittjoh@gmail.com>
- */
-abstract class User implements UserInterface, GroupableInterface
-{
-    protected $id;
+    private $id;
 
     /**
-     * @var string
+     * @ORM\Column(name="username", type="string", length=25)
      */
-    protected $username;
+    private $username;
 
     /**
-     * @var string
+     * @ORM\Column(name="username_canonical", type="string", length=25, unique=true)
      */
-    protected $usernameCanonical;
+    private $usernameCanonical;
 
     /**
-     * @var string
+     * @ORM\Column(name="email", type="string", length=60)
      */
-    protected $email;
+    private $email;
 
     /**
-     * @var string
+     * @ORM\Column(name="email_canonical", type="string", length=60, unique=true)
      */
-    protected $emailCanonical;
+    private $emailCanonical;
 
     /**
-     * @var boolean
+     * @ORM\Column(name="enabled", type="boolean")
      */
-    protected $enabled;
+    private $enabled;
 
     /**
      * The salt to use for hashing
      *
-     * @var string
+     * @ORM\Column(name="salt", type="string", length=32)
      */
     protected $salt;
 
     /**
      * Encrypted password. Must be persisted.
      *
-     * @var string
+     * @ORM\Column(name="password", type="string", length=40)
      */
-    protected $password;
+    private $password;
 
     /**
-     * Plain password. Used for model validation. Must not be persisted.
-     *
-     * @var string
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
      */
-    protected $plainPassword;
-
-    /**
-     * @var \DateTime
-     */
-    protected $lastLogin;
+    private $lastLogin;
 
     /**
      * Random string sent to the user email address in order to verify it
      *
-     * @var string
+     * @ORM\Column(name="confirmation_token", type="string", length=60, nullable=true)
      */
-    protected $confirmationToken;
+    private $confirmationToken;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(name="password_requested_at", type="datetime", nullable=true)
      */
-    protected $passwordRequestedAt;
+    private $passwordRequestedAt;
+
+    /**
+     * @ORM\Column(name="locked", type="boolean")
+     */
+    private $locked;
+
+    /**
+     * @ORM\Column(name="expired", type="boolean")
+     */
+    private $expired;
+
+    /**
+     * @ORM\Column(name="expires_at", type="datetime", nullable=true)
+     */
+    private $expiresAt;
+
+    /**
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles;
+
+    /**
+     * @ORM\Column(name="credentials_expired", type="boolean")
+     */
+    private $credentialsExpired;
+
+    /**
+     * @ORM\Column(name="credentials_expire_at", type="datetime", nullable=true)
+     */
+    private $credentialsExpireAt;
+
+    /**
+     * @var string $nombre
+     *
+     * @ORM\Column(name="nombre", type="string", length=75)
+     */
+    private $nombre;
+
+    /**
+     * @var string $apellidos
+     *
+     * @ORM\Column(name="apellidos", type="string", length=75)
+     */
+    private $apellidos;
+
+    /**
+     * @var string $dni
+     *
+     * @ORM\Column(name="dni", type="string", length=9)
+     */
+    private $dni;
 
     /**
      * @var Collection
      */
     protected $groups;
 
-    /**
-     * @var boolean
-     */
-    protected $locked;
-
-    /**
-     * @var boolean
-     */
-    protected $expired;
-
-    /**
-     * @var \DateTime
-     */
-    protected $expiresAt;
-
-    /**
-     * @var array
-     */
-    protected $roles;
-
-    /**
-     * @var boolean
-     */
-    protected $credentialsExpired;
-
-    /**
-     * @var \DateTime
-     */
-    protected $credentialsExpireAt;
 
     public function __construct()
     {
@@ -225,11 +206,13 @@ abstract class User implements UserInterface, GroupableInterface
     }
 
     /**
-     * Removes sensitive data from the user.
+     * Método requerido por la interfaz UserInterface
+     * Aqui es donde se puede remover data sensible del usuario
+     *
      */
     public function eraseCredentials()
     {
-        $this->plainPassword = null;
+
     }
 
     /**
@@ -275,11 +258,6 @@ abstract class User implements UserInterface, GroupableInterface
     public function getPassword()
     {
         return $this->password;
-    }
-
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
     }
 
     /**
@@ -507,13 +485,6 @@ abstract class User implements UserInterface, GroupableInterface
         return $this;
     }
 
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
-
-        return $this;
-    }
-
     public function setLastLogin(\DateTime $time = null)
     {
         $this->lastLogin = $time;
@@ -590,6 +561,66 @@ abstract class User implements UserInterface, GroupableInterface
     }
 
     /**
+     * Set nombre
+     *
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set apellidos
+     *
+     * @param string $apellidos
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+    }
+
+    /**
+     * Get apellidos
+     *
+     * @return string
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * Set dni
+     *
+     * @param string $dni
+     */
+    public function setDni($dni)
+    {
+        $this->dni = $dni;
+    }
+
+    /**
+     * Get dni
+     *
+     * @return string
+     */
+    public function getDni()
+    {
+        return $this->dni;
+    }
+
+    /**
      * @param string $name
      *
      * @return boolean
@@ -619,6 +650,6 @@ abstract class User implements UserInterface, GroupableInterface
 
     public function __toString()
     {
-        return (string) $this->getUsername();
+        return $this->getNombre().' '.$this->getApellidos();
     }
 }
