@@ -1,3 +1,11 @@
+glr_storeback:
+    resource: "@GlrStorebackBundle/Resources/config/routing.yml"
+    prefix:   /
+
+glr_storefront:
+    resource: "@GlrStorefrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
 glr_user:
     resource: "@GlrUserBundle/Resources/config/routing.yml"
     prefix:   /

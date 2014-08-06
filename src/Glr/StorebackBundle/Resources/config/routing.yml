@@ -1,0 +1,3 @@
+glr_storeback_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: GlrStorebackBundle:Default:index }

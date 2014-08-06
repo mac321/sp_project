@@ -1,24 +1,25 @@
-{% extends "GlrUserBundle::layout_user.html.twig" %}
+{% extends "GlrUserBundle::layout.html.twig" %}
 
-{% trans_default_domain 'GlrUserBundle' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
-{% block glr_user_content %}
+{% block fos_user_content %}
 {% if error %}
     <div>{{ error|trans }}</div>
 {% endif %}
 
-<form action="{{ path("glr_user_security_check") }}" method="post">
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-    <label for="username">{{ 'Email'|trans }}</label>
+    <label for="username">{{ 'security.login.username'|trans }}</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
 
-    <label for="password">{{ 'Contreseña'|trans }}</label>
+    <label for="password">{{ 'security.login.password'|trans }}</label>
     <input type="password" id="password" name="_password" required="required" />
 
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'Recordarme'|trans }}</label>
+    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    <input type="submit" id="_submit" name="_submit" value="{{ 'Login'|trans }}" />
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
-{% endblock glr_user_content %}
+hola
+{% endblock fos_user_content %}

@@ -1,0 +1,3 @@
+glr_storefront_homepage:
+    path:     /
+    defaults: { _controller: GlrStorefrontBundle:Portada:home }

@@ -1,0 +1,7 @@
+parameters:
+#    glr_storefront.example.class: Glr\StorefrontBundle\Example
+
+services:
+#    glr_storefront.example:
+#        class: %glr_storefront.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

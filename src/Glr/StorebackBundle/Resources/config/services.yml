@@ -1,0 +1,7 @@
+parameters:
+#    glr_storeback.example.class: Glr\StorebackBundle\Example
+
+services:
+#    glr_storeback.example:
+#        class: %glr_storeback.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

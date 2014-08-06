@@ -1,0 +1,8 @@
+Hello
+            {% if app.user %}
+                <p>Ud. est&aacute; logueado</p>
+            {% else %}
+                <p>Ud. no est&aacute; logueado</p>
+            {% endif %}
+
+{{ dump(app.user.username) }}
