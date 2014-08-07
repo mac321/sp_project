@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@GlrStorefrontBundle/Resources/public/css/frontend.css' output='css/frontend.css' %}
+        <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+    {% endstylesheets %}
+{% endblock stylesheets %}
+
+
+{% block body %}
+
+    {% block anuncio %}
+    {% endblock %}
+
+{% endblock body %}

@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html>
+
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}{% endblock title %} | Seguripago</title>
+
+        {% block stylesheets %}
+          {% stylesheets '../app/Resources/public/css/main.css' %}
+            <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+          {% endstylesheets %}
+        {% endblock stylesheets %}
+
+
+        {% block rss %}{% endblock %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+    <body id="{% block id '' %}">
+        <div class="container-body">
+            <div id="container" class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-12 col-md-10">
+                        <div class="content-rws"> </div>
+                    </div>
+                </div>
+                {% block body %}{% endblock body %}
+            </div>
+        </div>
+        {% block javascripts %}{% endblock javascripts %}
     </body>
+
 </html>
