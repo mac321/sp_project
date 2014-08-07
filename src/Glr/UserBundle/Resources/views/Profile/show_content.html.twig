@@ -1,9 +1,4 @@
-
-{% extends '::frontend.html.twig' %}
-
-{% block body %}
-
-<div class="container-home">
+<div class="container-perfil">
     <div class="row">
         <div class="col-md-3 col-md-offset-4">
             <div class="panel panel-default">
@@ -18,8 +13,11 @@
                 </div>
                 <div class="panel-body">
                     {% if app.user %}
+                        <p>{{ 'Nombre de usuario' }}: {{ user.username }}</p>
+                        <p>{{ 'Correo electrónico' }}: {{ user.email }}</p>
+                        <p>{{ 'Fecha de acceso' }}: {{ user.lastLogin|date("m/d/Y g:ia") }}</p>
                         <a class="btn btn-danger" href="{{ path('glr_user_security_logout') }}">
-                            {{ 'Cerrar sesión'|trans({}, 'FOSUserBundle') }}
+                            {{ 'Cerrar sesión' }}
                         </a>
                     {% else %}
                         <a class="btn btn-success" href="{{ path('glr_user_security_login') }}">{{ 'Iniciar sesión'|trans({}, 'FOSUserBundle') }}</a>
@@ -29,5 +27,3 @@
         </div>
     </div>
 </div>
-
-{% endblock body %}

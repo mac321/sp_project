@@ -1,3 +1,7 @@
-/*pages */
+/*pages/_login */
 .container-login {
+  margin-top: 100px; }
+
+/*pages/_perfil_show */
+.container-perfil {
   margin-top: 100px; }

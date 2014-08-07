@@ -1,0 +1,13 @@
+
+{% extends "GlrUserBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@GlrUserBundle/Resources/public/css/usuario.css' output='css/frontend.css' %}
+        <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+    {% endstylesheets %}
+{% endblock stylesheets %}
+
+{% block glr_user_content %}
+    {% include "GlrUserBundle:Profile:show_content.html.twig" %}
+{% endblock glr_user_content %}
