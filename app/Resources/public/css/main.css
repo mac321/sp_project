@@ -5363,38 +5363,37 @@ h6 {
 h1 {
   font-size: 22px;
   line-height: 28px;
-  border-bottom: 1px solid #e8e8e8; }
+  border-bottom: 1px solid #e8e8e8;
+  margin: 0px; }
 
 h2 {
   font-size: 20px;
   line-height: 22px;
-  margin-bottom: 10px; }
+  margin: 0px; }
 
 h3 {
   font-size: 18px;
   line-height: 20px;
-  margin-bottom: 8px;
+  margin: 0px;
   color: #515050 !important;
   margin-left: 0px !important; }
 
 h4 {
   font-size: 16px;
   line-height: 18px;
-  margin-bottom: 3px;
-  margin-top: 3px; }
+  margin: 0px; }
 
 h5 {
   font-size: 15px;
   line-height: 16px;
   font-weight: normal;
   color: #777777;
-  padding-left: 15px;
-  margin-bottom: 20px;
-  margin-top: 5px; }
+  margin: 0px; }
 
 h6 {
   font-size: 12px;
-  line-height: 21px; }
+  line-height: 21px;
+  margin: 0px; }
 
 h5.subtitle {
   margin-top: 0;
@@ -5417,3 +5416,16 @@ header {
   border-left-width: 6px;
   border-top-style: solid;
   border-top-color: #0079ba; }
+
+.bar-header {
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  top: 0;
+  left: 0; }
+  .bar-header .logo-bar {
+    position: relative;
+    background-color: #0079ba;
+    height: 4px;
+    width: 100%;
+    z-index: 3; }
